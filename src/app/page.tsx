@@ -171,49 +171,69 @@ export default function Page() {
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-200">
               Passionate developer with a knack for solving complex problems through code. Mostly self-taught and driven by an unyielding curiosity to explore and master new technologies.
             </p>
-            <div className="flex items-center justify-center space-x-4">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="default"
-                    className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  >
-                    Contact Me!
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48">
-                  <DropdownMenuLabel>Get in touch</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem onClick={() => handleContact('gmail')}>
-                      <Mail className="mr-2 h-4 w-4" />
-                      <span>Email</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleContact('whatsapp')}>
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      <span>WhatsApp</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleContact('linkedin')}>
-                      <Github className="mr-2 h-4 w-4" />
-                      <span>LinkedIn</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <div className="flex flex-col items-center justify-center space-y-4">
+              {/* Resume button - First line */}
               <Button
                 variant="default"
                 className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift"
                 asChild
               >
                 <a
-                  href="https://github.com/JACCKKK7"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub"
+                  aria-label="View Resume"
                 >
-                  <GitHubLogoIcon className="h-5 w-5" />
+                  <Download className="mr-2 h-4 w-4" />
+                  Resume
                 </a>
               </Button>
+              
+              {/* Contact Me and GitHub buttons - Second line */}
+              <div className="flex items-center justify-center space-x-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="default"
+                      className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                    >
+                      Contact Me!
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-48">
+                    <DropdownMenuLabel>Get in touch</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem onClick={() => handleContact('gmail')}>
+                        <Mail className="mr-2 h-4 w-4" />
+                        <span>Email</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleContact('whatsapp')}>
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        <span>WhatsApp</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleContact('linkedin')}>
+                        <Github className="mr-2 h-4 w-4" />
+                        <span>LinkedIn</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button
+                  variant="default"
+                  className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift"
+                  asChild
+                >
+                  <a
+                    href="https://github.com/JACCKKK7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <GitHubLogoIcon className="h-5 w-5" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </section>
 
