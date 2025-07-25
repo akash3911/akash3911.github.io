@@ -153,7 +153,7 @@ export default function Page() {
           variant="outline"
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="rounded-full bg-background/80 backdrop-blur-sm border-border/50 hover:bg-accent"
+          className="rounded-full bg-background/80 backdrop-blur-sm border-border/50 hover:bg-foreground hover:text-background transition-all duration-300"
         >
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -175,7 +175,7 @@ export default function Page() {
               {/* Resume button - First line */}
               <Button
                 variant="default"
-                className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift"
+                className="bg-success hover:bg-background text-success-foreground hover:text-foreground animate-fade-in delay-300 hover-lift transition-all duration-300"
                 asChild
               >
                 <a
@@ -195,7 +195,7 @@ export default function Page() {
                   <DropdownMenuTrigger asChild>
                     <Button 
                       variant="default"
-                      className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-success hover:bg-background text-success-foreground hover:text-foreground animate-fade-in delay-300 hover-lift focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300"
                     >
                       Contact Me!
                     </Button>
@@ -221,7 +221,7 @@ export default function Page() {
                 </DropdownMenu>
                 <Button
                   variant="default"
-                  className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift"
+                  className="bg-success hover:bg-background text-success-foreground hover:text-foreground animate-fade-in delay-300 hover-lift transition-all duration-300"
                   asChild
                 >
                   <a
@@ -446,7 +446,7 @@ export default function Page() {
                           <Button
                             asChild
                             variant="outline"
-                            className="mt-4 text-foreground hover:text-success hover:border-success transition-colors"
+                            className="mt-4 text-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-all duration-300"
                           >
                             <a
                               href={project.link}
@@ -460,7 +460,7 @@ export default function Page() {
                             <Button
                               asChild
                               variant="outline"
-                              className="mt-4 text-foreground hover:text-success hover:border-success transition-colors"
+                              className="mt-4 text-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-all duration-300"
                             >
                               <a
                                 href="https://github.com/fernand3z/my-webview-app/releases/download/v1.0.0/devlogzv1.0.0.apk"
@@ -487,9 +487,9 @@ export default function Page() {
                 <div className="flex justify-center mt-8">
                   <button
                     onClick={handleShowMoreProjects}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                    className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
                   >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
                       <span>Show More</span>
                       <span className="transform transition-transform duration-200">↓</span>
                     </div>
@@ -499,9 +499,9 @@ export default function Page() {
                 <div className="flex justify-center mt-8">
                   <button
                     onClick={handleShowMoreProjects}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                    className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
                   >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
                       <span>Show Less</span>
                       <span className="transform transition-transform duration-200 rotate-180">↓</span>
                     </div>
@@ -835,9 +835,9 @@ export default function Page() {
                 <div className="flex justify-center">
                   <button
                     onClick={handleShowMoreCerts}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                    className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
                   >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
                       <span>Show More</span>
                       <span className="transform transition-transform duration-200">↓</span>
                     </div>
@@ -850,9 +850,9 @@ export default function Page() {
                 <div className="flex justify-center">
                   <button
                     onClick={handleShowMoreCerts}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                    className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
                   >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
                       <span>Show Less</span>
                       <span className="transform transition-transform duration-200 rotate-180">↓</span>
                     </div>

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 
 export function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -42,27 +43,32 @@ export function Navbar() {
 
   const navigationItems = [
     {
-      icon: "👤",
+      icon: "/icons8-user.svg",
+      iconFilled: "/icons8-user-filled.svg", // Same icon since there's no filled version
       id: "about",
       label: "About"
     },
     {
-      icon: "⚡", 
+      icon: "/icons8-learning.svg", 
+      iconFilled: "/icons8-learning-filled.svg",
       id: "skills",
       label: "Skills"
     },
     {
-      icon: "🚀",
+      icon: "/icons8-project.svg",
+      iconFilled: "/icons8-project-filled.svg",
       id: "projects", 
       label: "Projects"
     },
     {
-      icon: "🎓",
+      icon: "/icons8-education.svg",
+      iconFilled: "/icons8-education-filled.svg",
       id: "education",
       label: "Education"
     },
     {
-      icon: "📜",
+      icon: "/icons8-certificate.svg",
+      iconFilled: "/icons8-certificate-filled.svg",
       id: "certifications",
       label: "Certifications"
     }
@@ -99,7 +105,13 @@ export function Navbar() {
             <div className="flex flex-col items-center space-y-3">
               {navigationItems.map((item, index) => (
                 <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
-                  <span className="text-lg">{item.icon}</span>
+                  <Image
+                    src={activeSection === item.id ? item.iconFilled : item.icon}
+                    alt={`${item.label} icon`}
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100"
+                  />
                 </div>
               ))}
             </div>
@@ -135,7 +147,13 @@ export function Navbar() {
                   <div className="flex items-center space-x-4">
                     {navigationItems.map((item, index) => (
                       <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
-                        <span className="text-lg">{item.icon}</span>
+                        <Image
+                          src={activeSection === item.id ? item.iconFilled : item.icon}
+                          alt={`${item.label} icon`}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100"
+                        />
                       </div>
                     ))}
                     {/* Close button */}
@@ -193,7 +211,13 @@ export function Navbar() {
                       : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
                   }`}
                 >
-                  <span className="text-lg transition-all duration-300 ease-in-out group-hover:text-xl group-hover:scale-110">{item.icon}</span>
+                  <Image
+                    src={activeSection === item.id ? item.iconFilled : item.icon}
+                    alt={`${item.label} icon`}
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100"
+                  />
                 </button>
                 
                 {/* Hover tooltip */}
@@ -247,7 +271,13 @@ export function Navbar() {
                             : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
                         }`}
                       >
-                        <span className="text-lg transition-all duration-300 ease-in-out group-hover:text-xl group-hover:scale-110">{item.icon}</span>
+                        <Image
+                          src={activeSection === item.id ? item.iconFilled : item.icon}
+                          alt={`${item.label} icon`}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100"
+                        />
                       </button>
                       
                       {/* Hover tooltip */}
