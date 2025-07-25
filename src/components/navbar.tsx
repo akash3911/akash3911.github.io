@@ -9,7 +9,6 @@ export function Navbar() {
   const [mounted, setMounted] = React.useState(false)
   const [activeSection, setActiveSection] = React.useState("about")
   const [isHovered, setIsHovered] = React.useState(false)
-  const [mobileExpanded, setMobileExpanded] = React.useState(false)
 
   const sections = ["about", "skills", "projects", "education", "certifications"]
 
@@ -104,71 +103,35 @@ export function Navbar() {
           >
             <div className="flex flex-col items-center space-y-3">
               {navigationItems.map((item, index) => (
-                <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
-                  <Image
-                    src={activeSection === item.id ? item.iconFilled : item.icon}
-                    alt={`${item.label} icon`}
-                    width={20}
-                    height={20}
-                    className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100"
-                  />
+                <div key={index} className="relative group">
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className={`p-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg ${
+                      activeSection === item.id
+                        ? "text-gray-900 dark:text-white bg-gray-200/70 dark:bg-gray-700/70"
+                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
+                    }`}
+                  >                        <Image
+                          src={activeSection === item.id ? item.iconFilled : item.icon}
+                          alt={`${item.label} icon`}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
+                        />
+                  </button>
+                  
+                  {/* Hover tooltip */}
+                  <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                    {item.label}
+                    <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-2 border-transparent border-r-gray-900 dark:border-r-gray-100"></div>
+                  </div>
                 </div>
               ))}
             </div>
           </nav>
         </div>
 
-        {/* Mobile - Bottom dock */}
-        <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
-          {/* Mobile dock indicator */}
-          <div 
-            className={`transition-all duration-300 ease-in-out ${
-              mobileExpanded ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-100'
-            }`}
-          >
-            {/* Dock indicator when collapsed */}
-            {!mobileExpanded && (
-              <button
-                onClick={() => setMobileExpanded(true)}
-                className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full p-2 border border-gray-200 dark:border-gray-800 shadow-2xl hover:scale-105 transition-all duration-200"
-              >
-                <div className="flex items-center space-x-1">
-                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-                </div>
-              </button>
-            )}
-            
-            {/* Full dock when expanded */}
-            {mobileExpanded && (
-              <div className="relative">
-                <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full px-6 py-3 border border-gray-200 dark:border-gray-800 shadow-2xl">
-                  <div className="flex items-center space-x-4">
-                    {navigationItems.map((item, index) => (
-                      <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
-                        <Image
-                          src={activeSection === item.id ? item.iconFilled : item.icon}
-                          alt={`${item.label} icon`}
-                          width={20}
-                          height={20}
-                          className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100"
-                        />
-                      </div>
-                    ))}
-                    {/* Close button */}
-                    <button
-                      onClick={() => setMobileExpanded(false)}
-                      className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80 transition-colors"
-                    >
-                      <span className="text-lg">✕</span>
-                    </button>
-                  </div>
-                </nav>
-              </div>
-            )}
-          </div>
-        </div>
+
       </>
     )
   }
@@ -216,7 +179,7 @@ export function Navbar() {
                     alt={`${item.label} icon`}
                     width={20}
                     height={20}
-                    className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100"
+                    className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
                   />
                 </button>
                 
@@ -229,76 +192,6 @@ export function Navbar() {
             ))}
           </div>
         </nav>
-      </div>
-
-      {/* Mobile - Bottom dock */}
-      <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
-        {/* Mobile dock indicator */}
-        <div 
-          className={`transition-all duration-300 ease-in-out ${
-            mobileExpanded ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-100'
-          }`}
-        >
-          {/* Dock indicator when collapsed */}
-          {!mobileExpanded && (
-            <button
-              onClick={() => setMobileExpanded(true)}
-              className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full p-2 border border-gray-200 dark:border-gray-800 shadow-2xl hover:scale-105 transition-all duration-200"
-            >
-              <div className="flex items-center space-x-1">
-                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
-              </div>
-            </button>
-          )}
-          
-          {/* Full dock when expanded */}
-          {mobileExpanded && (
-            <div className="relative">
-              <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full px-6 py-3 border border-gray-200 dark:border-gray-800 shadow-2xl">
-                <div className="flex items-center space-x-4">
-                  {navigationItems.map((item, index) => (
-                    <div key={index} className="relative group">
-                      <button
-                        onClick={() => {
-                          scrollToSection(item.id)
-                          setMobileExpanded(false) // Auto-hide after navigation
-                        }}
-                        className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg ${
-                          activeSection === item.id
-                            ? "text-gray-900 dark:text-white bg-gray-200/70 dark:bg-gray-700/70"
-                            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
-                        }`}
-                      >
-                        <Image
-                          src={activeSection === item.id ? item.iconFilled : item.icon}
-                          alt={`${item.label} icon`}
-                          width={20}
-                          height={20}
-                          className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100"
-                        />
-                      </button>
-                      
-                      {/* Hover tooltip */}
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-                        {item.label}
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-2 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Close button */}
-                  <button
-                    onClick={() => setMobileExpanded(false)}
-                    className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80 transition-colors"
-                  >
-                    <span className="text-lg">✕</span>
-                  </button>
-                </div>
-              </nav>
-            </div>
-          )}
-        </div>
       </div>
     </>
   )

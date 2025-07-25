@@ -658,21 +658,8 @@ export default function Page() {
                     link: "https://www.credly.com/badges/2ba10582-21c9-4c33-938f-5ae5eeca4c8d/public_url",
                     providers: [
                       { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      // { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
                     ]
                   },
-                  {
-                    title: "React.js AI Chatbot built with ChatGPT, Gemini and DeepSeek,",
-                    type: "Professional Certificate",
-                    issuer: "LinkedIn and GitHub",
-                    date: "2025",
-                    link: "https://www.udemy.com/certificate/UC-5d78faa4-6d21-4d4d-a079-098aa7c9e0ed/",
-                    providers: [
-                      { name: "GitHub", url: "https://udemy.com", icon: "/udemy-logo.png" },
-                      // { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-
                   {
                     title: "Career Essentials in GitHub",
                     type: "Professional Certificate",
@@ -685,103 +672,114 @@ export default function Page() {
                     ]
                   },
                   {
-                    title: "Career Essentials in System Administration",
+                    title: "React.js AI Chatbot built with ChatGPT, Gemini and DeepSeek,",
                     type: "Professional Certificate",
-                    issuer: "LinkedIn and Microsoft",
+                    issuer: "LinkedIn and GitHub",
                     date: "2025",
-                    link: "https://www.linkedin.com/learning/certificates/9b7ea63d32cd9a46772852f87edc3e13f32e8e6aefb95c4ebaa51ecb87c0b2b4",
+                    link: "https://www.udemy.com/certificate/UC-5d78faa4-6d21-4d4d-a079-098aa7c9e0ed/",
                     providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                      { name: "GitHub", url: "https://udemy.com", icon: "/udemy-logo.png" },
                     ]
                   },
-                  {
-                    title: "Ubuntu Linux Professional Certificate",
-                    type: "Professional Certificate",
-                    issuer: "Canonical",
-                    date: "2025",
-                    link: "https://www.linkedin.com/learning/certificates/92313e2481dd7891e2c805cf6f57c24041b3e22c982fc3471459972634f686a0",
-                    providers: [
-                      { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Career Essentials in Sustainable Tech",
-                    type: "Professional Certificate",
-                    issuer: "Microsoft and LinkedIn",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/0ba4b2d71c34aeabf02cfea0f534d11dbb15e6a89be7d8e36a96ee34ed6f1e98",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Docker Foundations",
-                    type: "Professional Certificate",
-                    issuer: "Docker",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/23f5265eada7fe3a3d6ed85f7271f2376f1a09c6902cc3c78fd7ae8ec59ffad6",
-                    providers: [
-                      { name: "Docker", url: "https://docker.com", icon: "/docker-logo.jpg" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Zendesk Customer Service",
-                    type: "Professional Certificate",
-                    issuer: "Zendesk",
-                    date: "2025",
-                    link: "https://www.linkedin.com/learning/certificates/be5e562f9bf05dddc22d374603b35d8b93484a076d9d85ddcc1d1cab63c76f11",
-                    providers: [
-                      { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Build Your Generative AI Productivity Skills",
-                    type: "Professional Certificate",
-                    issuer: "Microsoft and LinkedIn",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/8101d556cce742a74ff9a4ce9bb64f354811a6ede16f5b885421716cbcd235e5",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Career Essentials in Generative AI",
-                    type: "Professional Certificate",
-                    issuer: "Microsoft and LinkedIn",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/d4255dd847774f8bc86ad30aebe1cd089242bef805644c6a88b8e87a8dab063f",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Generative AI for Customer Service with Microsoft 365 Copilot",
-                    type: "Professional Certificate",
-                    issuer: "Microsoft",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/6cac185f1b410c460a9dea686cd5da12e45da8c5106707297ba2662ebbf49e6d",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "Microsoft Copilot for Productivity",
-                    type: "Professional Certificate",
-                    issuer: "Microsoft and LinkedIn",
-                    date: "2024",
-                    link: "https://www.linkedin.com/learning/certificates/da1c01eaac07fcac76025e1cd3d92f3cdf4ce89bc9dcdd5f817ca4044d7ac209",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  }
+
+                  // {
+                  //   title: "Career Essentials in System Administration",
+                  //   type: "Professional Certificate",
+                  //   issuer: "LinkedIn and Microsoft",
+                  //   date: "2025",
+                  //   link: "https://www.linkedin.com/learning/certificates/9b7ea63d32cd9a46772852f87edc3e13f32e8e6aefb95c4ebaa51ecb87c0b2b4",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Ubuntu Linux Professional Certificate",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Canonical",
+                  //   date: "2025",
+                  //   link: "https://www.linkedin.com/learning/certificates/92313e2481dd7891e2c805cf6f57c24041b3e22c982fc3471459972634f686a0",
+                  //   providers: [
+                  //     { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Career Essentials in Sustainable Tech",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Microsoft and LinkedIn",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/0ba4b2d71c34aeabf02cfea0f534d11dbb15e6a89be7d8e36a96ee34ed6f1e98",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Docker Foundations",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Docker",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/23f5265eada7fe3a3d6ed85f7271f2376f1a09c6902cc3c78fd7ae8ec59ffad6",
+                  //   providers: [
+                  //     { name: "Docker", url: "https://docker.com", icon: "/docker-logo.jpg" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Zendesk Customer Service",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Zendesk",
+                  //   date: "2025",
+                  //   link: "https://www.linkedin.com/learning/certificates/be5e562f9bf05dddc22d374603b35d8b93484a076d9d85ddcc1d1cab63c76f11",
+                  //   providers: [
+                  //     { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Build Your Generative AI Productivity Skills",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Microsoft and LinkedIn",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/8101d556cce742a74ff9a4ce9bb64f354811a6ede16f5b885421716cbcd235e5",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Career Essentials in Generative AI",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Microsoft and LinkedIn",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/d4255dd847774f8bc86ad30aebe1cd089242bef805644c6a88b8e87a8dab063f",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Generative AI for Customer Service with Microsoft 365 Copilot",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Microsoft",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/6cac185f1b410c460a9dea686cd5da12e45da8c5106707297ba2662ebbf49e6d",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" }
+                  //   ]
+                  // },
+                  // {
+                  //   title: "Microsoft Copilot for Productivity",
+                  //   type: "Professional Certificate",
+                  //   issuer: "Microsoft and LinkedIn",
+                  //   date: "2024",
+                  //   link: "https://www.linkedin.com/learning/certificates/da1c01eaac07fcac76025e1cd3d92f3cdf4ce89bc9dcdd5f817ca4044d7ac209",
+                  //   providers: [
+                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  //   ]
+                  // }
                 ].slice(0, visibleCertCount).map((cert, index) => (
                   <div key={index} className={`card-spotify p-4 rounded-lg hover-lift animate-scale-in delay-${(index % 4 + 1) * 100} flex flex-col`}>
                     <div>
