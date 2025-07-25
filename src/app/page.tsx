@@ -833,7 +833,7 @@ export default function Page() {
                 <div className="flex justify-center">
                   <button
                     onClick={handleShowMoreCerts}
-                    className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
+                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group hover:invert hover:brightness-0 hover:contrast-100 transition-all duration-300"
                   >
                     <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
                       <span>Show More</span>
@@ -850,7 +850,7 @@ export default function Page() {
                     onClick={handleShowMoreCerts}
                     className="text-muted-foreground hover:text-background hover:bg-foreground inline-flex items-center space-x-2 group transition-all duration-300"
                   >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
+                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
                       <span>Show Less</span>
                       <span className="transform transition-transform duration-200 rotate-180">↓</span>
                     </div>
