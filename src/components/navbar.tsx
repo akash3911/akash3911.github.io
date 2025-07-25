@@ -1,0 +1,275 @@
+"use client"
+
+import * as React from "react"
+import { useTheme } from "next-themes"
+
+export function Navbar() {
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+  const [activeSection, setActiveSection] = React.useState("about")
+  const [isHovered, setIsHovered] = React.useState(false)
+  const [mobileExpanded, setMobileExpanded] = React.useState(false)
+
+  const sections = ["about", "skills", "projects", "education", "certifications"]
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const current = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (current) setActiveSection(current)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [sections])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+      setActiveSection(sectionId)
+    }
+  }
+
+  const navigationItems = [
+    {
+      icon: "👤",
+      id: "about",
+      label: "About"
+    },
+    {
+      icon: "⚡", 
+      id: "skills",
+      label: "Skills"
+    },
+    {
+      icon: "🚀",
+      id: "projects", 
+      label: "Projects"
+    },
+    {
+      icon: "🎓",
+      id: "education",
+      label: "Education"
+    },
+    {
+      icon: "📜",
+      id: "certifications",
+      label: "Certifications"
+    }
+  ]
+
+  if (!mounted) {
+    return (
+      <>
+        {/* Desktop - Left side dock */}
+        <div 
+          className="hidden md:fixed md:left-0 md:top-1/2 md:transform md:-translate-y-1/2 md:z-40 md:block"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Hover trigger area */}
+          <div className="w-12 h-32 absolute left-0 top-1/2 transform -translate-y-1/2" />
+          
+          {/* Desktop dock indicator when hidden */}
+          {!isHovered && (
+            <div className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-r-lg p-2 border border-l-0 border-gray-200 dark:border-gray-800 shadow-lg">
+              <div className="flex flex-col space-y-1">
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
+          )}
+          
+          <nav 
+            className={`bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-r-2xl py-4 px-2 border border-l-0 border-gray-200 dark:border-gray-800 shadow-2xl transition-all duration-300 ease-in-out ${
+              isHovered ? 'translate-x-0' : '-translate-x-full'
+            }`}
+          >
+            <div className="flex flex-col items-center space-y-3">
+              {navigationItems.map((item, index) => (
+                <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
+                  <span className="text-lg">{item.icon}</span>
+                </div>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        {/* Mobile - Bottom dock */}
+        <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
+          {/* Mobile dock indicator */}
+          <div 
+            className={`transition-all duration-300 ease-in-out ${
+              mobileExpanded ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-100'
+            }`}
+          >
+            {/* Dock indicator when collapsed */}
+            {!mobileExpanded && (
+              <button
+                onClick={() => setMobileExpanded(true)}
+                className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full p-2 border border-gray-200 dark:border-gray-800 shadow-2xl hover:scale-105 transition-all duration-200"
+              >
+                <div className="flex items-center space-x-1">
+                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                  <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                </div>
+              </button>
+            )}
+            
+            {/* Full dock when expanded */}
+            {mobileExpanded && (
+              <div className="relative">
+                <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full px-6 py-3 border border-gray-200 dark:border-gray-800 shadow-2xl">
+                  <div className="flex items-center space-x-4">
+                    {navigationItems.map((item, index) => (
+                      <div key={index} className="p-2 rounded-full text-gray-600 dark:text-gray-400">
+                        <span className="text-lg">{item.icon}</span>
+                      </div>
+                    ))}
+                    {/* Close button */}
+                    <button
+                      onClick={() => setMobileExpanded(false)}
+                      className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80 transition-colors"
+                    >
+                      <span className="text-lg">✕</span>
+                    </button>
+                  </div>
+                </nav>
+              </div>
+            )}
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {/* Desktop - Left side dock */}
+      <div 
+        className="hidden md:fixed md:left-0 md:top-1/2 md:transform md:-translate-y-1/2 md:z-40 md:block"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Hover trigger area */}
+        <div className="w-12 h-32 absolute left-0 top-1/2 transform -translate-y-1/2" />
+        
+        {/* Desktop dock indicator when hidden */}
+        {!isHovered && (
+          <div className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-r-lg p-2 border border-l-0 border-gray-200 dark:border-gray-800 shadow-lg">
+            <div className="flex flex-col space-y-1">
+              <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+              <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+              <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+            </div>
+          </div>
+        )}
+        
+        <nav 
+          className={`bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-r-2xl py-4 px-2 border border-l-0 border-gray-200 dark:border-gray-800 shadow-2xl transition-all duration-300 ease-in-out ${
+            isHovered ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="flex flex-col items-center space-y-3">
+            {navigationItems.map((item, index) => (
+              <div key={index} className="relative group">
+                <button
+                  onClick={() => scrollToSection(item.id)}
+                  className={`p-3 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg ${
+                    activeSection === item.id
+                      ? "text-gray-900 dark:text-white bg-gray-200/70 dark:bg-gray-700/70"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
+                  }`}
+                >
+                  <span className="text-lg transition-all duration-300 ease-in-out group-hover:text-xl group-hover:scale-110">{item.icon}</span>
+                </button>
+                
+                {/* Hover tooltip */}
+                <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                  {item.label}
+                  <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-2 border-transparent border-r-gray-900 dark:border-r-gray-100"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile - Bottom dock */}
+      <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
+        {/* Mobile dock indicator */}
+        <div 
+          className={`transition-all duration-300 ease-in-out ${
+            mobileExpanded ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-100'
+          }`}
+        >
+          {/* Dock indicator when collapsed */}
+          {!mobileExpanded && (
+            <button
+              onClick={() => setMobileExpanded(true)}
+              className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full p-2 border border-gray-200 dark:border-gray-800 shadow-2xl hover:scale-105 transition-all duration-200"
+            >
+              <div className="flex items-center space-x-1">
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
+              </div>
+            </button>
+          )}
+          
+          {/* Full dock when expanded */}
+          {mobileExpanded && (
+            <div className="relative">
+              <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-full px-6 py-3 border border-gray-200 dark:border-gray-800 shadow-2xl">
+                <div className="flex items-center space-x-4">
+                  {navigationItems.map((item, index) => (
+                    <div key={index} className="relative group">
+                      <button
+                        onClick={() => {
+                          scrollToSection(item.id)
+                          setMobileExpanded(false) // Auto-hide after navigation
+                        }}
+                        className={`p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg ${
+                          activeSection === item.id
+                            ? "text-gray-900 dark:text-white bg-gray-200/70 dark:bg-gray-700/70"
+                            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
+                        }`}
+                      >
+                        <span className="text-lg transition-all duration-300 ease-in-out group-hover:text-xl group-hover:scale-110">{item.icon}</span>
+                      </button>
+                      
+                      {/* Hover tooltip */}
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                        {item.label}
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-2 border-transparent border-t-gray-900 dark:border-t-gray-100"></div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* Close button */}
+                  <button
+                    onClick={() => setMobileExpanded(false)}
+                    className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80 transition-colors"
+                  >
+                    <span className="text-lg">✕</span>
+                  </button>
+                </div>
+              </nav>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  )
+} 
