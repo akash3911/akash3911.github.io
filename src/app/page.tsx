@@ -179,7 +179,7 @@ export default function Page() {
                 asChild
               >
                 <a
-                  href="/resume.pdf"
+                  href="resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="View Resume"
