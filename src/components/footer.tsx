@@ -46,7 +46,7 @@ export function Footer() {
               asChild
             >
               <a
-                href="https://github.com/JACCKKK7"
+                href="https://github.com/akash3911"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"

@@ -19,96 +19,13 @@ import Image from "next/image"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { ThemeSparkles } from "@/components/ui/ThemeSparkles"
 import { useTheme } from "next-themes"
+import { projects, certifications } from "@/lib/projects"
 
 export default function Page() {
   const [showMoreCerts, setShowMoreCerts] = useState(false)
   const [visibleProjectCount, setVisibleProjectCount] = useState(6)
   const [visibleCertCount, setVisibleCertCount] = useState(8)
   const { theme, setTheme } = useTheme()
-
-  const projects = [
-    {
-      title: "Wavlly",
-      description: "A collection of development tools and utilities",
-      content: "A comprehensive collection of development tools and utilities to streamline the development workflow",
-      link: "https://github.com/JACCKKK7/Wavlly",
-      technologies: [
-        { name: "MongoDB", icon: "/icons/mongoDB.svg" },
-        { name: "Express", icon: "/icons/express.svg" },
-        { name: "React", icon: "/icons/reactnative-svgrepo-com.svg" },
-        { name: "Node", icon: "/icons/node-svgrepo-com.svg" },
-        { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-        { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" }
-      ]
-    },
-    // {
-    //   title: "Update Script",
-    //   description: "A script for automating system updates and maintenance tasks",
-    //   content: "Streamlines the process of keeping your system up-to-date with automated checks and updates",
-    //   link: "https://github.com/JACCKKK7/update-script",
-    //   technologies: [
-    //     { name: "Bash", icon: "/icons/bash-icon-svgrepo-com.svg" },
-    //     { name: "Linux", icon: "/icons/linux-svgrepo-com(1).svg" },
-    //     { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-    //     { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" }
-    //   ]
-    // },
-    {
-      title: "UnioM",
-      description: "A modern blog site built with Hugo static site generator",
-      content: "Fast and minimalist blog featuring custom themes, responsive design, and markdown support",
-      link: "https://github.com/JACCKKK7/UnioM",
-      technologies: [
-        { name: "Hugo", icon: "/icons/hugo-svgrepo-com.svg" },
-        { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-        { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" }
-      ]
-    },
-    {
-      title: "ExamSentry",
-      description: "Python script for downloading music from YTmusic using the yt-dlp library",
-      content: "A simple Python script to download audio from YouTube videos",
-      link: "https://github.com/JACCKKK7/ExamSentry",
-      technologies: [
-        { name: "Python", icon: "/icons/python-svgrepo-com.svg" },
-        { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-        { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" }
-      ]
-    },
-    {
-      title: "Music Genre Classification",
-      description: "A React Native mobile app for my personal blog",
-      content: "Cross-platform mobile application built with React Native that provides a native app experience for my blog site with offline capabilities and push notifications",
-      link: "https://github.com/JACCKKK7",
-      technologies: [
-        { name: "React Native", icon: "/icons/reactnative-svgrepo-com.svg" },
-        { name: "JavaScript", icon: "/icons/javascript-svgrepo-com.svg" },
-        { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-        { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" }
-      ]
-    },
-    {
-      title: "Coming Soon",
-      description: "Future project planned",
-      content: "Another exciting project in the pipeline. Stay tuned for updates!",
-      status: "In Planning",
-      technologies: []
-    },
-    {
-      title: "Coming Soon",
-      description: "Future project planned",
-      content: "Another exciting project in the pipeline. Stay tuned for updates!",
-      status: "In Planning",
-      technologies: []
-    },
-    {
-      title: "Coming Soon",
-      description: "Future project planned",
-      content: "Another exciting project in the pipeline. Stay tuned for updates!",
-      status: "In Planning",
-      technologies: []
-    }
-  ];
 
   const handleShowMoreProjects = () => {
     if (visibleProjectCount >= projects.length) {
@@ -121,14 +38,14 @@ export default function Page() {
   const showingAllProjects = visibleProjectCount >= projects.length
 
   const handleShowMoreCerts = () => {
-    if (visibleCertCount >= 12) { // Total number of certificates
+    if (visibleCertCount >= certifications.length) {
       setVisibleCertCount(4) // Reset to initial count
     } else {
-      setVisibleCertCount(prev => Math.min(prev + 4, 12))
+      setVisibleCertCount(prev => Math.min(prev + 4, certifications.length))
     }
   }
 
-  const showingAllCerts = visibleCertCount >= 12
+  const showingAllCerts = visibleCertCount >= certifications.length
 
   const handleContact = (platform: string) => {
     switch(platform) {
@@ -225,7 +142,7 @@ export default function Page() {
                   asChild
                 >
                   <a
-                    href="https://github.com/JACCKKK7"
+                    href="https://github.com/akash3911"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
@@ -443,6 +360,21 @@ export default function Page() {
                     <CardFooter className="mt-auto">
                       {project.link ? (
                         <div className="flex flex-row w-full space-x-2">
+                          {project.livelink && (
+                            <Button
+                              asChild
+                              variant="outline"
+                              className="mt-4 text-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-all duration-300"
+                            >
+                              <a
+                                href={project.livelink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Live <ArrowRightIcon className="ml-2 h-4 w-4" />
+                              </a>
+                            </Button>
+                          )}
                           <Button
                             asChild
                             variant="outline"
@@ -453,24 +385,9 @@ export default function Page() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              View on GitHub <ArrowRightIcon className="ml-2 h-4 w-4" />
+                              GitHub <GitHubLogoIcon className="ml-2 h-4 w-4" />
                             </a>
                           </Button>
-                          {project.title === "Devlogz Blog App" && (
-                            <Button
-                              asChild
-                              variant="outline"
-                              className="mt-4 text-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-all duration-300"
-                            >
-                              <a
-                                href="https://github.com/fernand3z/my-webview-app/releases/download/v1.0.0/devlogzv1.0.0.apk"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <Download className="h-[18px] w-[18px]" />
-                              </a>
-                            </Button>
-                          )}
                         </div>
                       ) : (
                         <span className="text-muted-foreground inline-flex items-center space-x-1">
@@ -637,150 +554,7 @@ export default function Page() {
             <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">License && Certifications</h2>
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* First 4 certificates are always visible */}
-                {/* Additional certificates are shown based on visibleCertCount */}
-                {[
-                  {
-                    title: " AWS Certified Solutions Architect – Associate",
-                    type: "Professional Certificate",
-                    issuer: "LinkedIn and GitHub",
-                    date: "2025",
-                    link: "https://www.credly.com/badges/66bd3b2b-0dc4-4366-9c72-2cbc453a1f52",
-                    providers: [
-                      { name: "AWS", url: "https://aws.amazon.com/", icon: "/icons/aws-svgrepo-com.svg" },
-                    ]
-                  },
-                  {
-                    title: " Azure AI-900 Fundamentals",
-                    type: "Professional Certificate",
-                    issuer: "LinkedIn and GitHub",
-                    date: "2025",
-                    link: "https://www.credly.com/badges/2ba10582-21c9-4c33-938f-5ae5eeca4c8d/public_url",
-                    providers: [
-                      { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                    ]
-                  },
-                  {
-                    title: "Career Essentials in GitHub",
-                    type: "Professional Certificate",
-                    issuer: "LinkedIn and GitHub",
-                    date: "2025",
-                    link: "https://www.linkedin.com/learning/certificates/95ab038988c255d63db1db0dc4b018e87cca009032a26917b5f3cb7b06802a80",
-                    providers: [
-                      { name: "GitHub", url: "https://github.com", icon: "/github-logo.png" },
-                      { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                    ]
-                  },
-                  {
-                    title: "React.js AI Chatbot built with ChatGPT, Gemini and DeepSeek,",
-                    type: "Professional Certificate",
-                    issuer: "LinkedIn and GitHub",
-                    date: "2025",
-                    link: "https://www.udemy.com/certificate/UC-5d78faa4-6d21-4d4d-a079-098aa7c9e0ed/",
-                    providers: [
-                      { name: "GitHub", url: "https://udemy.com", icon: "/udemy-logo.png" },
-                    ]
-                  },
-
-                  // {
-                  //   title: "Career Essentials in System Administration",
-                  //   type: "Professional Certificate",
-                  //   issuer: "LinkedIn and Microsoft",
-                  //   date: "2025",
-                  //   link: "https://www.linkedin.com/learning/certificates/9b7ea63d32cd9a46772852f87edc3e13f32e8e6aefb95c4ebaa51ecb87c0b2b4",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Ubuntu Linux Professional Certificate",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Canonical",
-                  //   date: "2025",
-                  //   link: "https://www.linkedin.com/learning/certificates/92313e2481dd7891e2c805cf6f57c24041b3e22c982fc3471459972634f686a0",
-                  //   providers: [
-                  //     { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Career Essentials in Sustainable Tech",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Microsoft and LinkedIn",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/0ba4b2d71c34aeabf02cfea0f534d11dbb15e6a89be7d8e36a96ee34ed6f1e98",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Docker Foundations",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Docker",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/23f5265eada7fe3a3d6ed85f7271f2376f1a09c6902cc3c78fd7ae8ec59ffad6",
-                  //   providers: [
-                  //     { name: "Docker", url: "https://docker.com", icon: "/docker-logo.jpg" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Zendesk Customer Service",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Zendesk",
-                  //   date: "2025",
-                  //   link: "https://www.linkedin.com/learning/certificates/be5e562f9bf05dddc22d374603b35d8b93484a076d9d85ddcc1d1cab63c76f11",
-                  //   providers: [
-                  //     { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Build Your Generative AI Productivity Skills",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Microsoft and LinkedIn",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/8101d556cce742a74ff9a4ce9bb64f354811a6ede16f5b885421716cbcd235e5",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Career Essentials in Generative AI",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Microsoft and LinkedIn",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/d4255dd847774f8bc86ad30aebe1cd089242bef805644c6a88b8e87a8dab063f",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Generative AI for Customer Service with Microsoft 365 Copilot",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Microsoft",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/6cac185f1b410c460a9dea686cd5da12e45da8c5106707297ba2662ebbf49e6d",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" }
-                  //   ]
-                  // },
-                  // {
-                  //   title: "Microsoft Copilot for Productivity",
-                  //   type: "Professional Certificate",
-                  //   issuer: "Microsoft and LinkedIn",
-                  //   date: "2024",
-                  //   link: "https://www.linkedin.com/learning/certificates/da1c01eaac07fcac76025e1cd3d92f3cdf4ce89bc9dcdd5f817ca4044d7ac209",
-                  //   providers: [
-                  //     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
-                  //     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
-                  //   ]
-                  // }
-                ].slice(0, visibleCertCount).map((cert, index) => (
+                {certifications.slice(0, visibleCertCount).map((cert, index) => (
                   <div key={index} className={`card-spotify p-4 rounded-lg hover-lift animate-scale-in delay-${(index % 4 + 1) * 100} flex flex-col`}>
                     <div>
                       <h3 className="text-xl font-bold mb-3 text-foreground">{cert.title}</h3>
@@ -829,7 +603,7 @@ export default function Page() {
               </div>
 
               {/* Show More/Less Certificates Button */}
-              {visibleCertCount < 12 && (
+              {visibleCertCount < certifications.length && (
                 <div className="flex justify-center">
                   <button
                     onClick={handleShowMoreCerts}
