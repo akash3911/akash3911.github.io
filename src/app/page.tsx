@@ -19,7 +19,7 @@ import Image from "next/image"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { ThemeSparkles } from "@/components/ui/ThemeSparkles"
 import { useTheme } from "next-themes"
-import { projects, certifications } from "@/lib/projects"
+import { projects, certifications, experiences } from "@/lib/projects"
 
 export default function Page() {
   const [showMoreCerts, setShowMoreCerts] = useState(false)
@@ -548,6 +548,54 @@ export default function Page() {
               </Card>
             </div>
           </section>
+
+          {/* Experience Section */}
+          {experiences.length > 0 && (
+            <section id="experience" className="mb-24 animate-fade-in">
+              <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">Experience</h2>
+              <div className="space-y-6">
+                {experiences.map((experience, index) => (
+                  <Card key={index} className="hover-lift">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card flex items-center justify-center">
+                          <Image
+                            src={experience.icon}
+                            alt={`${experience.title} icon`}
+                            width={48}
+                            height={48}
+                            className="w-full h-full object-contain p-1"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          {experience.link ? (
+                            <a
+                              href={experience.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-primary transition-colors"
+                            >
+                              <CardTitle>{experience.title}</CardTitle>
+                            </a>
+                          ) : (
+                            <CardTitle>{experience.title}</CardTitle>
+                          )}
+                          <CardDescription>
+                            <span className="block text-muted-foreground">{experience.role}</span>
+                            <span className="block text-sm text-muted-foreground/60">{experience.organization}</span>
+                            <span className="block text-sm text-muted-foreground/60">{experience.date}</span>
+                          </CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-muted-foreground text-sm">{experience.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* License & Certifications Section */}
           <section id="certifications" className="animate-fade-in">

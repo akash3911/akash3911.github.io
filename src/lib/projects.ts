@@ -35,9 +35,24 @@ export type Certification = {
   providers: CertificationProvider[]
 }
 
+export type Experience = {
+  title: string
+  role: string
+  organization: string
+  date: string
+  description: string
+  icon: string
+  link?: string
+}
+
 export const projects: Project[] = parseJsonEnv<Project[]>(process.env.NEXT_PUBLIC_PROJECTS, [])
 
 export const certifications: Certification[] = parseJsonEnv<Certification[]>(
   process.env.NEXT_PUBLIC_CERTIFICATIONS,
+  [],
+)
+
+export const experiences: Experience[] = parseJsonEnv<Experience[]>(
+  process.env.NEXT_PUBLIC_EXPERIENCES,
   [],
 )

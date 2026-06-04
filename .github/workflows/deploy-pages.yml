@@ -22,6 +22,7 @@ jobs:
     environment: github-pages
 
     env:
+      NEXT_PUBLIC_EXPERIENCES: ${{ vars.NEXT_PUBLIC_EXPERIENCES }}
       NEXT_PUBLIC_PROJECTS: ${{ vars.NEXT_PUBLIC_PROJECTS }}
       NEXT_PUBLIC_CERTIFICATIONS: ${{ vars.NEXT_PUBLIC_CERTIFICATIONS }}
 
