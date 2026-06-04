@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_PROJECTS: ${{ vars.NEXT_PUBLIC_PROJECTS }}
+      NEXT_PUBLIC_CERTIFICATIONS: ${{ vars.NEXT_PUBLIC_CERTIFICATIONS }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
