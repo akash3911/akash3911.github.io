@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     ],
     shortcut: 'logo.svg',
     apple: 'logo.svg',
+  },
+  other: {
+    "google-adsense-account": "ca-pub-5891495023434653",
   }
 }
 
@@ -47,4 +50,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}
