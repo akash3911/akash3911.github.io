@@ -20,7 +20,7 @@ export function ThemeSparkles() {
           minSize={0.8}
           maxSize={1.8}
           speed={0.5}
-          particleDensity={80}
+          particleDensity={20}
           className="w-screen h-screen"
           particleColor={resolvedTheme === "dark" ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)"}
         />

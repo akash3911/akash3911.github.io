@@ -22,30 +22,7 @@ import { useTheme } from "next-themes"
 import { projects, certifications, experiences } from "@/lib/projects"
 
 export default function Page() {
-  const [showMoreCerts, setShowMoreCerts] = useState(false)
-  const [visibleProjectCount, setVisibleProjectCount] = useState(6)
-  const [visibleCertCount, setVisibleCertCount] = useState(8)
   const { theme, setTheme } = useTheme()
-
-  const handleShowMoreProjects = () => {
-    if (visibleProjectCount >= projects.length) {
-      setVisibleProjectCount(6) // Reset to initial count of 6
-    } else {
-      setVisibleProjectCount(prev => Math.min(prev + 3, projects.length))
-    }
-  }
-
-  const showingAllProjects = visibleProjectCount >= projects.length
-
-  const handleShowMoreCerts = () => {
-    if (visibleCertCount >= certifications.length) {
-      setVisibleCertCount(4) // Reset to initial count
-    } else {
-      setVisibleCertCount(prev => Math.min(prev + 4, certifications.length))
-    }
-  }
-
-  const showingAllCerts = visibleCertCount >= certifications.length
 
   const handleContact = (platform: string) => {
     switch(platform) {
@@ -163,21 +140,21 @@ export default function Page() {
                 <div className="animate-slide-in delay-100">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      { name: "JavaScript", icon: "/icons/javascript-svgrepo-com.svg" },
-                      { name: "TypeScript", icon: "/icons/typescript-svgrepo-com.svg" },
-                      { name: "Python", icon: "/icons/python-svgrepo-com.svg" },
-                      { name: "Java", icon: "/icons/java-svgrepo-com.svg" },
-                      // { name: "C", icon: "/icons/c.svg" },
-                      { name: "HTML", icon: "/icons/html-5-svgrepo-com.svg" },
-                      { name: "CSS", icon: "/icons/css-svgrepo-com.svg" }
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+                      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+                      { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+                      { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+                      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -189,21 +166,19 @@ export default function Page() {
                 <div className="animate-slide-in delay-200">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      { name: "React", icon: "/icons/react-svgrepo-com.svg" },
-                      { name: "Next.js", icon: "/icons/nextjs-icon-svgrepo-com.svg" },
-                      { name: "Tailwind", icon: "/icons/tailwind-svgrepo-com.svg" },
-                      { name: "NPM", icon: "/icons/npm-svgrepo-com.svg" },
-                      // { name: "Hugo", icon: "/icons/hugo-svgrepo-com.svg" },
-                      // { name: "WordPress", icon: "/icons/wordpress-color-svgrepo-com.svg" },
-                      // { name: "Deno", icon: "/icons/Deno_Logo_2024.svg" },
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", invertInDark: true },
+                      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+                      { name: "NPM", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -215,21 +190,23 @@ export default function Page() {
                 <div className="animate-slide-in delay-300">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      { name: "Node.js", icon: "/icons/node-svgrepo-com.svg" },
-                      { name: "Express", icon: "/icons/express-svgrepo-com.svg" },
-                      { name: "PostgreSQL", icon: "/icons/postgresql-svgrepo-com.svg" },
-                      { name: "MongoDB", icon: "/icons/mongodb-svgrepo-com.svg" },
-                      { name: "Firebase", icon: "/icons/firebase-svgrepo-com.svg" },
-                      // { name: "PHP", icon: "/icons/php-1-logo-svgrepo-com.svg" },
-                      { name: "SQL", icon: "/icons/sql-database-generic-svgrepo-com.svg" }
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                      { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", invertInDark: true },
+                      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+                      { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+                      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+                      { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                      { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -241,21 +218,20 @@ export default function Page() {
                 <div className="animate-slide-in delay-400">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      // { name: "Docker", icon: "/icons/docker-svgrepo-com(1).svg" },
-                      { name: "Git", icon: "/icons/git-svgrepo-com.svg" },
-                      { name: "GitHub", icon: "/icons/github-svgrepo-com.svg" },
-                      // { name: "GitLab", icon: "/icons/gitlab-svgrepo-com.svg" },
-                      { name: "AWS", icon: "/icons/aws-svgrepo-com.svg" },
-                      { name: "Azure", icon: "/icons/azure-svgrepo-com.svg" },
-                      // { name: "Nginx", icon: "/icons/nginx-svgrepo-com.svg" }
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+                      { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invertInDark: true },
+                      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                      { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+                      { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -267,21 +243,21 @@ export default function Page() {
                 <div className="animate-slide-in delay-500">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      { name: "Linux", icon: "/icons/linux-svgrepo-com(1).svg" },
-                      { name: "Ubuntu", icon: "/icons/ubuntu-svgrepo-com.svg" },
-                      { name: "Arch", icon: "/icons/arch-linux-svgrepo-com.svg" },
-                      // { name: "Apple", icon: "/icons/apple-svgrepo-com.svg" },
-                      // { name: "Slack", icon: "/icons/slack-svgrepo-com.svg" },
-                      { name: "Cursor", icon: "/icons/cursor.svg" },
-                      { name: "Vim", icon: "/icons/vim-svgrepo-com.svg" }
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+                      { name: "Ubuntu", icon: "https://api.iconify.design/logos:ubuntu.svg" },
+                      { name: "Arch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/archlinux/archlinux-original.svg" },
+                      { name: "Cursor", icon: "https://cdn.simpleicons.org/cursor/38bdf8" },
+                      { name: "Vim", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vim/vim-original.svg" },
+                      { name: "Neovim", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neovim/neovim-original.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -293,21 +269,19 @@ export default function Page() {
                 <div className="animate-slide-in delay-600">
                   <div className="space-y-2 md:space-y-4">
                     {[
-                      { name: "VS Code", icon: "/icons/vscode-svgrepo-com.svg" },
-                      { name: "Jupyter", icon: "/icons/jupyter-svgrepo-com.svg" },
-                      { name: "Terminal", icon: "/icons/terminal-svgrepo-com.svg" },
-                      { name: "PowerShell", icon: "/icons/powershell-svgrepo-com.svg" },
-                      { name: "Bash", icon: "/icons/bash-icon-svgrepo-com.svg" },
-                      { name: "Notion", icon: "/icons/notion-logo-svgrepo-com.svg" },
-                      { name: "Figma", icon: "/icons/figma-svgrepo-com.svg" }
-                    ].map((tech: { name: string; icon: string }, index: number) => (
+                      { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+                      { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+                      { name: "PowerShell", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" },
+                      { name: "Bash", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" }
+                    ].map((tech: { name: string; icon: string; invertInDark?: boolean }, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <Image
                           src={tech.icon}
                           alt={`${tech.name} icon`}
                           width={20}
                           height={20}
-                          className="w-5 h-5"
+                          className={`w-5 h-5 ${tech.invertInDark ? "dark:invert" : ""}`}
+                          unoptimized
                         />
                         <span className="text-xs md:text-sm font-medium text-foreground">{tech.name}</span>
                       </div>
@@ -323,7 +297,7 @@ export default function Page() {
             <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">Development Endeavors</h2>
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.slice(0, visibleProjectCount).map((project, index) => (
+                {projects.map((project, index) => (
                   <Card key={index} className={`hover-lift flex flex-col ${!project.link ? 'opacity-75' : ''}`}>
                     <CardHeader>
                       <CardTitle>{project.title}</CardTitle>
@@ -347,7 +321,12 @@ export default function Page() {
                                 alt={`${tech.name} icon`}
                                 width={20}
                                 height={20}
-                                className="w-5 h-5"
+                                className={`w-5 h-5 ${
+                                  ["express", "github", "next.js", "nextjs", "vercel", "yolo", "bash", "cursor", "apple"].includes(tech.name.toLowerCase())
+                                    ? "dark:invert"
+                                    : ""
+                                }`}
+                                unoptimized
                               />
                               <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs bg-popover text-popover-foreground rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                                 {tech.name}
@@ -398,33 +377,6 @@ export default function Page() {
                   </Card>
                 ))}
               </div>
-
-              {/* Show More/Less Projects Button */}
-              {visibleProjectCount < projects.length ? (
-                <div className="flex justify-center mt-8">
-                  <button
-                    onClick={handleShowMoreProjects}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 group transition-all duration-300"
-                  >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
-                      <span>Show More</span>
-                      <span className="transform transition-transform duration-200">↓</span>
-                    </div>
-                  </button>
-                </div>
-              ) : (
-                <div className="flex justify-center mt-8">
-                  <button
-                    onClick={handleShowMoreProjects}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 group transition-all duration-300"
-                  >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
-                      <span>Show Less</span>
-                      <span className="transform transition-transform duration-200 rotate-180">↓</span>
-                    </div>
-                  </button>
-                </div>
-              )}
             </div>
           </section>
 
@@ -445,7 +397,7 @@ export default function Page() {
                       >
                         <Image 
                           src="/vitap-logo.png" 
-                          alt="Vocational Training Authority Logo" 
+                          alt="VIT-AP University Logo" 
                           width={48}
                           height={48}
                           className="w-full h-full object-contain p-1" 
@@ -565,6 +517,7 @@ export default function Page() {
                             width={48}
                             height={48}
                             className="w-full h-full object-contain p-1"
+                            unoptimized
                           />
                         </div>
                         <div className="flex-1">
@@ -602,7 +555,7 @@ export default function Page() {
             <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">License && Certifications</h2>
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {certifications.slice(0, visibleCertCount).map((cert, index) => (
+                {certifications.map((cert, index) => (
                   <div key={index} className={`card-spotify p-4 rounded-lg hover-lift animate-scale-in delay-${(index % 4 + 1) * 100} flex flex-col`}>
                     <div>
                       <h3 className="text-xl font-bold mb-3 text-foreground">{cert.title}</h3>
@@ -638,7 +591,11 @@ export default function Page() {
                               alt={`${provider.name} logo`}
                               width={24}
                               height={24}
-                              className="w-6 h-6 object-contain"
+                              className={`w-6 h-6 object-contain ${
+                                ["github", "next.js", "nextjs", "express", "vercel"].includes(provider.name.toLowerCase())
+                                  ? "dark:invert"
+                                  : ""
+                              }`}
                               quality={100}
                               unoptimized
                             />
@@ -649,36 +606,6 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-
-              {/* Show More/Less Certificates Button */}
-              {visibleCertCount < certifications.length && (
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleShowMoreCerts}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 group transition-all duration-300"
-                  >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-all duration-200">
-                      <span>Show More</span>
-                      <span className="transform transition-transform duration-200">↓</span>
-                    </div>
-                  </button>
-                </div>
-              )}
-
-              {/* Show Less Button - only visible when all certificates are shown */}
-              {showingAllCerts && (
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleShowMoreCerts}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 group transition-all duration-300"
-                  >
-                    <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
-                      <span>Show Less</span>
-                      <span className="transform transition-transform duration-200 rotate-180">↓</span>
-                    </div>
-                  </button>
-                </div>
-              )}
             </div>
           </section>
         </div>

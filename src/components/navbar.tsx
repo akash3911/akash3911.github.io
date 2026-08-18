@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
+import { User, Code2, FolderGit2, GraduationCap, Award } from "lucide-react"
 
 export function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -42,32 +42,27 @@ export function Navbar() {
 
   const navigationItems = [
     {
-      icon: "/icons8-user.svg",
-      iconFilled: "/icons8-user-filled.svg", // Same icon since there's no filled version
+      Icon: User,
       id: "about",
       label: "About"
     },
     {
-      icon: "/icons8-learning.svg", 
-      iconFilled: "/icons8-learning-filled.svg",
+      Icon: Code2,
       id: "skills",
       label: "Skills"
     },
     {
-      icon: "/icons8-project.svg",
-      iconFilled: "/icons8-project-filled.svg",
+      Icon: FolderGit2,
       id: "projects", 
       label: "Projects"
     },
     {
-      icon: "/icons8-education.svg",
-      iconFilled: "/icons8-education-filled.svg",
+      Icon: GraduationCap,
       id: "education",
       label: "Education"
     },
     {
-      icon: "/icons8-certificate.svg",
-      iconFilled: "/icons8-certificate-filled.svg",
+      Icon: Award,
       id: "certifications",
       label: "Certifications"
     }
@@ -111,13 +106,8 @@ export function Navbar() {
                         ? "text-gray-900 dark:text-white bg-gray-200/70 dark:bg-gray-700/70"
                         : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
                     }`}
-                  >                        <Image
-                          src={activeSection === item.id ? item.iconFilled : item.icon}
-                          alt={`${item.label} icon`}
-                          width={20}
-                          height={20}
-                          className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
-                        />
+                  >
+                    <item.Icon className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110" />
                   </button>
                   
                   {/* Hover tooltip */}
@@ -174,13 +164,7 @@ export function Navbar() {
                       : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/80 dark:hover:bg-gray-800/80"
                   }`}
                 >
-                  <Image
-                    src={activeSection === item.id ? item.iconFilled : item.icon}
-                    alt={`${item.label} icon`}
-                    width={20}
-                    height={20}
-                    className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110 dark:invert dark:brightness-0 dark:contrast-100 group-hover:invert group-hover:brightness-0 group-hover:contrast-100"
-                  />
+                  <item.Icon className="w-5 h-5 transition-all duration-300 ease-in-out group-hover:scale-110" />
                 </button>
                 
                 {/* Hover tooltip */}

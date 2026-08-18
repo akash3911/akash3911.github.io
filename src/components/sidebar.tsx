@@ -88,21 +88,7 @@ export function Sidebar({ sections, activeSection, onSectionClick }: SidebarProp
                 <LinkedInLogoIcon className="h-4 w-4" />
               </a>
             </Button>
-            {/* <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-background/50 hover:scale-110 transition-all duration-200 text-muted-foreground hover:text-foreground"
-              asChild
-            >
-              <a
-                href="https://x.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (Twitter)"
-              >
-                <TwitterLogoIcon className="h-4 w-4" />
-              </a>
-            </Button> */}
+
             <Button
               variant="ghost"
               size="icon"
@@ -118,11 +104,6 @@ export function Sidebar({ sections, activeSection, onSectionClick }: SidebarProp
                 <EnvelopeClosedIcon className="h-4 w-4" />
               </a>
             </Button>
-          </div>
-
-          {/* Copyright */}
-          <div className="text-center text-sm text-muted-foreground mt-4 px-4">
-            <p>© {new Date().getFullYear()} Akash Jonnalagadda</p>
           </div>
         </div>
       </SheetContent>
