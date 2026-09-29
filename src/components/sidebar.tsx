@@ -5,6 +5,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons"
+import { Copy, Check } from "lucide-react"
+import { copyEmail } from "@/lib/copy-email"
 
 interface SidebarProps {
   sections: string[]
@@ -13,6 +15,16 @@ interface SidebarProps {
 }
 
 export function Sidebar({ sections, activeSection, onSectionClick }: SidebarProps) {
+  const [copied, setCopied] = React.useState(false)
+
+  const handleEmailClick = async () => {
+    const ok = await copyEmail()
+    if (ok) {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -89,21 +101,33 @@ export function Sidebar({ sections, activeSection, onSectionClick }: SidebarProp
               </a>
             </Button>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-background/50 hover:scale-110 transition-all duration-200 text-muted-foreground hover:text-foreground"
-              asChild
-            >
-              <a
-                href="mailto:jonnalagaddaakash777@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Email"
+            <div className="relative group">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleEmailClick}
+                title="Click to copy email"
+                aria-label="Copy email address"
+                className="hover:bg-background/50 hover:scale-110 transition-all duration-200 text-muted-foreground hover:text-foreground"
               >
-                <EnvelopeClosedIcon className="h-4 w-4" />
-              </a>
-            </Button>
+                {copied ? (
+                  <Check className="h-4 w-4 text-green-500" />
+                ) : (
+                  <EnvelopeClosedIcon className="h-4 w-4" />
+                )}
+              </Button>
+              <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 flex items-center gap-1 px-2 py-1 text-xs bg-popover text-popover-foreground rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-border/40">
+                {copied ? (
+                  <>
+                    <Check className="h-3 w-3 text-green-500" /> Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3 w-3" /> Copy email
+                  </>
+                )}
+              </span>
+            </div>
           </div>
         </div>
       </SheetContent>

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Mail, MessageSquare, Github, Download, Sun, Moon } from "lucide-react"
+import { Mail, MessageSquare, Github, Download, Sun, Moon, Copy, Check } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import {
@@ -20,15 +20,22 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { ThemeSparkles } from "@/components/ui/ThemeSparkles"
 import { useTheme } from "next-themes"
 import { projects, certifications, experiences } from "@/lib/projects"
+import { CONTACT_EMAIL, copyEmail } from "@/lib/copy-email"
 
 export default function Page() {
   const { theme, setTheme } = useTheme()
+  const [emailCopied, setEmailCopied] = useState(false)
 
-  const handleContact = (platform: string) => {
+  const handleContact = async (platform: string) => {
     switch(platform) {
-      case 'gmail':
-        window.location.href = 'mailto:jonnalagaddaakash777@gmail.com';
+      case 'gmail': {
+        const ok = await copyEmail()
+        if (ok) {
+          setEmailCopied(true)
+          setTimeout(() => setEmailCopied(false), 2000)
+        }
         break;
+      }
       case 'whatsapp':
         window.location.href = 'https://wa.me/7416982004';
         break;
@@ -98,9 +105,21 @@ export default function Page() {
                     <DropdownMenuLabel>Get in touch</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                      <DropdownMenuItem onClick={() => handleContact('gmail')}>
+                      <DropdownMenuItem
+                        onSelect={(e) => {
+                          e.preventDefault()
+                          handleContact('gmail')
+                        }}
+                        title={`Click to copy ${CONTACT_EMAIL}`}
+                        className="group cursor-pointer"
+                      >
                         <Mail className="mr-2 h-4 w-4" />
-                        <span>Email</span>
+                        <span>{emailCopied ? "Copied!" : "Email"}</span>
+                        {emailCopied ? (
+                          <Check className="ml-auto h-4 w-4 text-green-500" />
+                        ) : (
+                          <Copy className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-200" />
+                        )}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => handleContact('whatsapp')}>
                         <MessageSquare className="mr-2 h-4 w-4" />

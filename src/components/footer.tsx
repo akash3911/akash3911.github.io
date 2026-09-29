@@ -1,10 +1,21 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons"
+import { Copy, Check } from "lucide-react"
+import { CONTACT_EMAIL, copyEmail } from "@/lib/copy-email"
 
 export function Footer() {
+  const [copied, setCopied] = useState(false)
+
+  const handleEmailClick = async () => {
+    const ok = await copyEmail()
+    if (ok) {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
   return (
     <footer className="w-full bg-background/30 dark:bg-background/50 backdrop-blur-xl border-t border-border/40">
       <div className="max-w-4xl mx-auto px-4 py-6">
@@ -24,17 +35,29 @@ export function Footer() {
                 +91 741682004
               </span>
             </a>
-            <a 
-              href="mailto:jonnalagaddaakash777@gmail.com" 
-              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
+            <button
+              type="button"
+              onClick={handleEmailClick}
+              title="Click to copy email"
+              aria-label="Copy email address"
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group cursor-pointer text-left"
             >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
               </svg>
               <span className="group-hover:translate-x-1 transition-transform duration-200">
-                jonnalagaddaakash777@gmail.com
+                {CONTACT_EMAIL}
               </span>
-            </a>
+              {copied ? (
+                <Check className="w-4 h-4 text-green-500 shrink-0" />
+              ) : (
+                <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0" />
+              )}
+              <span className="sr-only">{copied ? "Copied!" : "Copy email"}</span>
+              {copied && (
+                <span className="text-xs text-green-500">Copied!</span>
+              )}
+            </button>
           </div>
 
           {/* Social Links - Right Side */}
